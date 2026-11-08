@@ -1,0 +1,317 @@
+<title>Сообщество ВК для Ксении</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Caveat:wght@700&display=swap">
+<style>
+/* Layout: one phone-width column of numbered steps; each text sits in a copy box with its own button */
+:root {
+  --cream: #f7f2e9;
+  --paper: #fffdf8;
+  --sage-soft: #dfe7da;
+  --sage: #a9bba5;
+  --deep: #4f6b52;
+  --ink: #2e3a2f;
+  --muted: #6c776b;
+  --terra: #d9774b;
+  --line: #e6dfd1;
+  --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hand: "Caveat", "Segoe Script", cursive;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--cream); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -0.02em; line-height: 1.2; }
+h1 { font-size: clamp(28px, 6vw, 40px); font-weight: 800; }
+h2 { font-size: 22px; font-weight: 800; }
+h3 { font-size: 16px; font-weight: 800; margin-top: 18px; }
+p, ul, ol { margin: 0; }
+.hand { font-family: var(--hand); color: var(--terra); font-size: 26px; line-height: 1; }
+.intro { display: grid; gap: 12px; margin-bottom: 28px; }
+.intro p { color: var(--muted); }
+.toc { background: var(--paper); border-radius: 20px; padding: 18px 22px; margin-bottom: 28px; }
+.toc ol { padding-left: 22px; columns: 2; column-gap: 28px; font-size: 15px; }
+.toc a { color: var(--deep); text-decoration: none; font-weight: 600; }
+.step { background: var(--paper); border-radius: 26px; padding: 24px clamp(18px, 4vw, 30px); margin-bottom: 18px; display: grid; gap: 12px; scroll-margin-top: 16px; }
+.step-head { display: flex; gap: 14px; align-items: center; }
+.num { width: 40px; height: 40px; border-radius: 50%; background: var(--deep); color: #fff; display: grid; place-items: center; font-weight: 800; flex: none; }
+.how { color: var(--muted); font-size: 15px; }
+.how b { color: var(--ink); }
+.path { display: inline; background: var(--sage-soft); color: var(--deep); border-radius: 8px; padding: 1px 8px; font-weight: 700; font-size: 14px; }
+.box { border: 1.5px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--cream); }
+.box-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 8px 8px 16px; border-bottom: 1.5px solid var(--line); background: var(--paper); }
+.box-top span { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.copy { border: 0; background: var(--terra); color: #fff; font: 700 14px var(--font); padding: 8px 16px; border-radius: 999px; cursor: pointer; flex: none; }
+.copy.ok { background: var(--deep); }
+.copy:focus-visible { outline: 3px solid var(--deep); outline-offset: 2px; }
+.t { margin: 0; padding: 14px 16px; white-space: pre-wrap; word-break: break-word; font: 500 15px/1.55 var(--font); }
+.imgs { display: grid; gap: 10px; }
+.imgs img { width: 100%; border-radius: 14px; display: block; border: 1px solid var(--line); }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.note { background: var(--sage-soft); color: var(--deep); border-radius: 14px; padding: 12px 16px; font-size: 14px; font-weight: 600; }
+.svc { border-top: 1.5px dashed var(--line); padding-top: 14px; display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: start; }
+.svc img { width: 92px; border-radius: 12px; border: 1px solid var(--line); }
+.svc > div { display: grid; gap: 8px; min-width: 0; }
+.svc .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.svc .row b { font-size: 16px; }
+.small { font-size: 13px; color: var(--muted); }
+ul.list { padding-left: 20px; display: grid; gap: 6px; }
+.when { display: inline-block; background: var(--terra); color: #fff; font-weight: 800; font-size: 13px; padding: 2px 10px; border-radius: 999px; }
+@media (max-width: 520px) { .toc ol { columns: 1; } .grid3 { grid-template-columns: repeat(3, 1fr); } .svc { grid-template-columns: 64px 1fr; } .svc img { width: 64px; } }
+</style>
+
+<div class="wrap">
+  <div class="intro">
+    <span class="hand">инструкция для Ксении ♡</span>
+    <h1>Сообщество ВКонтакте шаг за шагом</h1>
+    <p>Делайте шаги по порядку. Где нужен текст, нажмите «Скопировать» и вставьте его в ВК. Картинки сохраните из чата с Claude (я прислала их файлами) или нажмите на картинку здесь и удерживайте.</p>
+    <p class="note">Настраивать удобнее с компьютера на vk.com: там больше настроек. В приложении ВК всё то же самое находится через ⚙️ «Управление». Если какой-то пункт называется чуть иначе, пришлите скриншот, подскажу.</p>
+  </div>
+
+  <nav class="toc" aria-label="Шаги">
+    <ol>
+      <li><a href="#s1">Создать сообщество</a></li>
+      <li><a href="#s2">Название и адрес</a></li>
+      <li><a href="#s3">Описание</a></li>
+      <li><a href="#s4">Аватар и обложка</a></li>
+      <li><a href="#s5">Разделы</a></li>
+      <li><a href="#s6">Сообщения и приветствие</a></li>
+      <li><a href="#s7">Услуги с ценами</a></li>
+      <li><a href="#s8">Обсуждение «Отзывы»</a></li>
+      <li><a href="#s9">Закреплённый пост</a></li>
+      <li><a href="#s10">Первые посты и клипы</a></li>
+      <li><a href="#s11">Шаблоны ответов</a></li>
+      <li><a href="#s12">Первые подписчики</a></li>
+    </ol>
+  </nav>
+
+  <section class="step" id="s1">
+    <div class="step-head"><span class="num">1</span><h2>Создать сообщество</h2></div>
+    <p class="how">Откройте <span class="path">Сообщества → Создать сообщество</span>. Тип выберите <b>«Бизнес»</b> (если такого нет, то «Тематическое сообщество»). Тематика: <b>«Образование»</b>. Название вставьте из шага 2. Нажмите «Создать».</p>
+  </section>
+
+  <section class="step" id="s2">
+    <div class="step-head"><span class="num">2</span><h2>Название и адрес страницы</h2></div>
+    <p class="how">Название попадает в поиск ВК, поэтому в нём есть слова, которые ищут студенты.</p>
+    <div class="box"><div class="box-top"><span>Название</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Ксения | Помощь студентам | Курсовые, дипломы</pre></div>
+    <p class="how">Адрес: <span class="path">Управление → Основная информация → Адрес страницы</span>. Попробуйте по очереди, какой свободен:</p>
+    <div class="box"><div class="box-top"><span>Адрес (vk.com/…)</span><button class="copy" type="button">Скопировать</button></div><pre class="t">ksenia_study_nn</pre></div>
+    <p class="small">Если занят: ksenia.study, kseniastudy, ksenia_kursovye</p>
+  </section>
+
+  <section class="step" id="s3">
+    <div class="step-head"><span class="num">3</span><h2>Описание и статус</h2></div>
+    <p class="how"><span class="path">Управление → Основная информация → Описание</span></p>
+    <div class="box"><div class="box-top"><span>Описание</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Привет! Я Ксения, уже 3 года помогаю студентам с учёбой ☺️
+
+📚 Курсовые, дипломы, отчёты по практике, статьи, презентации, речь к защите, эссе, рефераты, контрольные
+
+🎓 Экономика, бухучёт, финансы, менеджмент, маркетинг, реклама и PR, управление персоналом, ГМУ, логистика, туризм, лингвистика, психология, педагогика, право, история, литература, философия, культурология, экология. Сложные технические работы не беру.
+
+✅ 150+ выполненных работ, 0 возвратов
+✅ Сдаю по главам, чтобы научрук видел прогресс
+✅ Правки бесплатно
+✅ Проверка на антиплагиат, часто в подарок
+✅ Без посредников, работаю сама
+
+💳 Оплата частями: 50% предоплата, 25% после двух глав, остаток после готовой работы
+
+📍 Нижний Новгород и онлайн по всей России
+✍️ Напишите в сообщения сообщества тему, предмет и срок, и я скажу цену</pre></div>
+    <p class="how">Статус: на главной странице сообщества нажмите под названием «Изменить статус» (или «Краткое описание»).</p>
+    <div class="box"><div class="box-top"><span>Статус</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Курсовые, дипломы, отчёты · 150+ работ · сдаю по главам ♡</pre></div>
+    <p class="small">Когда заработает сайт, добавьте в конец описания строку «🧮 Рассчитать стоимость: ссылка на сайт».</p>
+  </section>
+
+  <section class="step" id="s4">
+    <div class="step-head"><span class="num">4</span><h2>Аватар и обложка</h2></div>
+    <p class="how"><b>Аватар:</b> на странице сообщества нажмите на круглое фото → «Загрузить» → файл <b>vk-avatar.jpg</b>. Круг выставьте по лицу.</p>
+    <p class="how"><b>Обложка:</b> <span class="path">Управление → Основная информация → Обложка сообщества → Загрузить</span> → файл <b>vk-oblozhka.jpg</b>. Важное стоит в центре, поэтому на телефоне ничего не обрежется.</p>
+    <div class="imgs">
+      <img src="vk-oblozhka.jpg" alt="Обложка: фото Ксении и надпись «Помогаю студентам с учёбой»">
+      <img src="vk-avatar.jpg" alt="Аватар: фото Ксении в круге" style="width:160px;border-radius:50%">
+    </div>
+  </section>
+
+  <section class="step" id="s5">
+    <div class="step-head"><span class="num">5</span><h2>Разделы</h2></div>
+    <p class="how"><span class="path">Управление → Разделы</span>. Включите:</p>
+    <ul class="list how">
+      <li><b>Стена</b>: открытая, комментарии включены.</li>
+      <li><b>Обсуждения</b>: ограниченные (темы создаёте только вы, писать в них могут все).</li>
+      <li><b>Клипы</b>: включить.</li>
+      <li><b>Товары / Услуги</b>: включить и выбрать режим <b>«Услуги»</b>. Валюта: рубли. Контакт для связи: «Сообщения сообщества».</li>
+      <li><b>Ссылки</b>: включить (потом добавите сайт).</li>
+      <li>Если есть пункт <b>«Главный блок»</b>, выберите «Услуги».</li>
+    </ul>
+    <p class="how">Фото, аудио, видео, статьи, мероприятия можно выключить, чтобы не было пустых разделов.</p>
+  </section>
+
+  <section class="step" id="s6">
+    <div class="step-head"><span class="num">6</span><h2>Сообщения и приветствие</h2></div>
+    <p class="how"><span class="path">Управление → Сообщения</span> → «Сообщения сообщества»: <b>включить</b>. В поле «Приветствие» вставьте:</p>
+    <div class="box"><div class="box-top"><span>Приветствие</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Здравствуйте! Я Ксения ☺️ Напишите, пожалуйста:
+1) что нужно сделать (курсовая, диплом, отчёт…)
+2) предмет и тему
+3) срок сдачи
+4) методичку или требования, если есть
+Отвечу и скажу цену 🥰</pre></div>
+    <p class="how">Там же включите <b>«Кнопку действия»</b> (если есть) и выберите «Написать сообщение». Когда заработает сайт, можно поменять на «Открыть сайт».</p>
+    <p class="how">В <span class="path">Управление → Контакты</span> добавьте себя: должность «Ксения, отвечу в сообщениях».</p>
+  </section>
+
+  <section class="step" id="s7">
+    <div class="step-head"><span class="num">7</span><h2>Услуги с ценами</h2></div>
+    <p class="how">На странице сообщества: <span class="path">Услуги → Добавить услугу</span>. Для каждой: загрузите картинку, вставьте название, описание и цену. Категория: «Образование» или «Услуги».</p>
+    <div id="svcList"></div>
+  </section>
+
+  <section class="step" id="s8">
+    <div class="step-head"><span class="num">8</span><h2>Обсуждение «Отзывы»</h2></div>
+    <p class="how"><span class="path">Обсуждения → Создать тему</span>.</p>
+    <div class="box"><div class="box-top"><span>Название темы</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Отзывы 💛</pre></div>
+    <div class="box"><div class="box-top"><span>Первое сообщение</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Здесь можно оставить отзыв о работе со мной ☺️
+Напишите, что за работа была (курсовая, диплом, отчёт) и как прошла сдача или защита. Можно прикрепить скриншот оценки.
+Спасибо, что доверяете мне свою учёбу 🥰</pre></div>
+    <p class="how">Сразу после этого напишите прошлым клиентам (Наире, Кристине, Алине) и попросите оставить пару слов. Текст для них есть в шаге 11.</p>
+  </section>
+
+  <section class="step" id="s9">
+    <div class="step-head"><span class="num">9</span><h2>Закреплённый пост</h2></div>
+    <p class="how">Опубликуйте запись с картинкой <b>vk-zakrep.jpg</b>, потом на записи нажмите <span class="path">⋯ → Закрепить</span>.</p>
+    <div class="imgs"><img src="vk-zakrep.jpg" alt="Картинка для закрепа: цены и оплата 50/25/25" style="max-width:360px"></div>
+    <div class="box"><div class="box-top"><span>Текст закрепа</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Давайте знакомиться ☺️
+
+Я Ксения, помогаю студентам с курсовыми, дипломами и отчётами по практике. За 3 года сделала больше 150 работ, и ни одного возврата денег.
+
+Как я работаю:
+1️⃣ Вы пишете тему, предмет и срок (и методичку, если есть)
+2️⃣ Я называю цену и срок. Обычно 5–7 дней, диплом около 14
+3️⃣ Сдаю по главам: вы показываете научруку, я вношу правки
+4️⃣ Правки бесплатно, проверка на антиплагиат часто в подарок
+
+💳 Оплата частями: 50% предоплата → 25% после двух глав → остаток после готовой работы
+
+Цены на картинке 👆 Точную цену скажу, когда увижу тему.
+
+✍️ Пишите в сообщения сообщества. Отвечаю сама, без посредников 🥰</pre></div>
+  </section>
+
+  <section class="step" id="s10">
+    <div class="step-head"><span class="num">10</span><h2>Первые посты и клипы</h2></div>
+    <p class="how">Выкладывайте по одному через 1–2 дня, чтобы сообщество не выглядело пустым. Клипы загружайте <b>от имени сообщества</b>: <span class="path">Клипы → Создать клип</span>, музыку добавьте из библиотеки ВК.</p>
+
+    <h3><span class="when">День 1</span> Клип «Староста» (файл starosta.mp4)</h3>
+    <div class="box"><div class="box-top"><span>Подпись к клипу</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Старосты, вы лучшие 😅 Отметьте свою в комментариях 👇
+#курсовая #студенты #сессия #староста #нижнийновгород</pre></div>
+
+    <h3><span class="when">День 3</span> Пост «Как я пишу диплом по главам»</h3>
+    <div class="box"><div class="box-top"><span>Текст поста</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Почему я сдаю диплом по главам, а не целиком в конце 📚
+
+Самое страшное для студента — получить готовую работу за неделю до защиты и узнать, что научрук хотел «совсем другое».
+
+Поэтому я работаю так:
+▫️ пишу главу и отправляю вам
+▫️ вы показываете научруку
+▫️ я вношу правки и только потом иду дальше
+
+Так к концу работа уже согласована, и никаких сюрпризов перед защитой ☺️
+
+А вам научрук возвращал работу на доработку? Сколько раз? 👇</pre></div>
+
+    <h3><span class="when">День 5</span> Клип «Угадай специальность» (файл ugaday-specialnost.mp4)</h3>
+    <div class="box"><div class="box-top"><span>Подпись к клипу</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Пиши счёт в комментарии: 0, 1, 2 или 3? 👇
+#курсовая #студенты #тест #угадай #нижнийновгород</pre></div>
+
+    <h3><span class="when">День 7</span> Пост «До сессии месяц»</h3>
+    <div class="box"><div class="box-top"><span>Текст поста</span><button class="copy" type="button">Скопировать</button></div><pre class="t">До сессии около месяца 🙈 Что стоит сделать уже сейчас, чтобы в декабре не паниковать:
+
+1. Узнать точные сроки сдачи курсовых и отчётов по практике
+2. Найти методичку (да, ту самую, которая была «где-то в сентябре»)
+3. Согласовать тему с научруком, если ещё нет
+4. Проверить, какой процент оригинальности требует кафедра
+
+Если что-то из этого уже горит, пишите в сообщения. Помогу с курсовой, отчётом или подготовкой к защите ☺️
+
+Сохраните пост, чтобы не потерять 📌</pre></div>
+
+    <h3><span class="when">День 9</span> Пост с отзывом</h3>
+    <p class="how">Только после того, как Наира разрешит. Прикрепите картинку или просто текст.</p>
+    <div class="box"><div class="box-top"><span>Текст поста</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Лучшие сообщения в моём телефоне 🥹
+
+«Ксюша, привет ❤️ я защитилась на 5!!! Спасибо тебе огромное, дорогая. Благодаря твоей крутой работе ❤️»
+
+Ради таких сообщений я и работаю ☺️ Наира, ещё раз поздравляю!
+
+Если у вас скоро защита или сдача курсовой, пишите, помогу 💛</pre></div>
+  </section>
+
+  <section class="step" id="s11">
+    <div class="step-head"><span class="num">11</span><h2>Шаблоны ответов</h2></div>
+    <p class="how">В сообщениях сообщества (на компьютере) есть кнопка <b>«Шаблоны»</b>: сохраните туда эти ответы, чтобы не печатать каждый раз. Если кнопки нет, держите их в заметках телефона.</p>
+    <div class="box"><div class="box-top"><span>Цена</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Курсовая от 11 000 ₽, диплом от 13 000 ₽, отчёт по практике от 1 000 ₽. Точную цену скажу, когда увижу тему и методичку ☺️</pre></div>
+    <div class="box"><div class="box-top"><span>Оплата</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Оплата частями: 50% предоплата, 25% после двух глав и остаток после готовой работы. Правки входят в стоимость 🥰</pre></div>
+    <div class="box"><div class="box-top"><span>Сроки</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Обычно курсовая 5–7 дней, диплом около 14 дней. Если срочно, напишите срок, посмотрю, смогу ли быстрее ☺️</pre></div>
+    <div class="box"><div class="box-top"><span>Оплата пришла</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Оплата пришла, спасибо большое ☺️ Если будут какие-то новые данные или вопросы, пишите 🥰</pre></div>
+    <div class="box"><div class="box-top"><span>После сдачи: просьба об отзыве</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Спасибо, что выбрали меня ☺️ Если придут правки, пишите, всё исправлю.
+Буду очень благодарна, если оставите пару слов в обсуждении «Отзывы» в моём сообществе: vk.com/ksenia_study_nn 🥰</pre></div>
+    <p class="small">В последнем шаблоне замените адрес, если в шаге 2 получился другой.</p>
+  </section>
+
+  <section class="step" id="s12">
+    <div class="step-head"><span class="num">12</span><h2>Первые подписчики</h2></div>
+    <ul class="list how">
+      <li><b>Пригласите друзей:</b> на странице сообщества <span class="path">⋯ → Пригласить друзей</span>.</li>
+      <li><b>Место работы:</b> на своей личной странице <span class="path">Редактировать → Карьера → Место работы</span> выберите своё сообщество. Ссылка на него появится у вас в профиле.</li>
+      <li><b>Репост закрепа</b> к себе на страницу с подписью ниже.</li>
+      <li><b>Текущим клиентам</b> (Анастасии, Кристине, Алине) отправьте ссылку вместе с шаблоном «просьба об отзыве».</li>
+      <li><b>Чаты</b>: в следующую рассылку добавьте ссылку на сообщество.</li>
+    </ul>
+    <div class="box"><div class="box-top"><span>Подпись к репосту</span><button class="copy" type="button">Скопировать</button></div><pre class="t">Завела отдельное сообщество про свою работу ☺️ Там цены, отзывы и смешные клипы про студентов. Подписывайтесь, а если у вас или знакомых горят курсовые и дипломы, пишите 💛</pre></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var SVC = [
+    ["Курсовая", "11000", "Курсовая работа по методичке вашего вуза.\n\n✅ Сдаю по главам, чтобы научрук видел прогресс\n✅ Правки бесплатно\n✅ Оформление по ГОСТ\n✅ Проверка на антиплагиат часто в подарок\n\nОбычный срок 5–7 дней. Цена от 11 000 ₽, точную скажу после темы и методички.\nОплата: 50% предоплата, 25% после двух глав, остаток после готовой работы."],
+    ["Диплом (ВКР)", "13000", "Дипломная работа по главам, с правками до защиты.\n\n✅ Глава → научрук → правки → следующая глава\n✅ Правки бесплатно\n✅ Можно добавить презентацию и речь к защите\n\nОбычный срок около 14 дней. Цена от 13 000 ₽, точную скажу после темы и методички.\nОплата: 50% предоплата, 25% после двух глав, остаток после готовой работы."],
+    ["Отчёт по практике", "1000", "Отчёт по практике, дневник, характеристика.\nМенеджмент, туризм, экономика, маркетинг, госуправление и другие направления.\n\nЦена от 1 000 ₽, зависит от объёма и требований."],
+    ["Статья", "1300", "Научная статья 3–7 страниц с нужной оригинальностью.\n\nЦена 1 300 ₽."],
+    ["Речь к защите", "1200", "Текст выступления на защиту курсовой или диплома, чтобы спокойно выступить и уложиться во время.\n\nЦена 1 200 ₽."],
+    ["Презентация", "500", "Презентация к защите или докладу.\n\nЦена от 500 ₽, зависит от количества слайдов."],
+    ["Эссе, реферат, доклад", "500", "Эссе, реферат или доклад по требованиям преподавателя.\n\nЦена от 500 ₽."],
+    ["Контрольная, задачи", "500", "Контрольные работы и задачи: экономика, бухучёт, финансы и другие предметы.\n\nЦена от 500 ₽."],
+    ["Проверка на антиплагиат", "490", "Проверка работы на антиплагиат с отчётом.\nК курсовой или диплому часто дарю проверку бесплатно ☺️\n\nЦена 490 ₽."]
+  ];
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  var html = "";
+  SVC.forEach(function (s, i) {
+    html += '<div class="svc"><img src="vk-usluga-' + (i + 1) + '.jpg" alt="' + esc(s[0]) + '"><div>' +
+      '<div class="small">Картинка: vk-usluga-' + (i + 1) + '.jpg</div>' +
+      '<div class="box"><div class="box-top"><span>Название</span><button class="copy" type="button">Скопировать</button></div><pre class="t">' + esc(s[0]) + '</pre></div>' +
+      '<div class="box"><div class="box-top"><span>Цена, ₽</span><button class="copy" type="button">Скопировать</button></div><pre class="t">' + s[1] + '</pre></div>' +
+      '<div class="box"><div class="box-top"><span>Описание</span><button class="copy" type="button">Скопировать</button></div><pre class="t">' + esc(s[2]) + '</pre></div>' +
+      '</div></div>';
+  });
+  document.getElementById("svcList").innerHTML = html;
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest(".copy"); if (!b) return;
+    var pre = b.closest(".box").querySelector(".t");
+    var text = pre.innerText;
+    function ok() { b.textContent = "Скопировано ✓"; b.classList.add("ok"); setTimeout(function () { b.textContent = "Скопировать"; b.classList.remove("ok"); }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(pre);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      try { if (document.execCommand("copy")) { ok(); return; } } catch (err) {}
+      b.textContent = "Выделено, скопируйте";
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fallback);
+      else fallback();
+    } catch (err) { fallback(); }
+  });
+})();
+</script>
