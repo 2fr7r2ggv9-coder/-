@@ -1,0 +1,256 @@
+<title>Ксения · помощь студентам</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Помощь студентам с курсовыми, дипломами и отчётами по практике. Нижний Новгород и онлайн. 150+ работ, 3 года опыта.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout: one narrow column like a phone card, sections stacked; brand = Ksenia's navy + yellow cards */
+:root {
+  --bg: #121733;
+  --panel: #1d2448;
+  --panel-2: #262e58;
+  --fg: #f4f5fb;
+  --muted: #a9afcf;
+  --accent: #ffc928;
+  --accent-ink: #141833;
+  --line: #2f3866;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hand: "Caveat", "Segoe Script", cursive;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+section { padding-block: 40px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+h2 { font-size: clamp(24px, 5vw, 32px); font-weight: 800; margin-bottom: 20px; }
+h2 .y { color: var(--accent); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+
+/* hero */
+.hero { padding-block: 40px 24px; display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: center; }
+.photo { width: 100%; max-width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 22px; border: 4px solid var(--accent); display: block; }
+.hero h1 { font-size: clamp(44px, 9vw, 64px); font-weight: 900; line-height: 1; }
+.hero .sub { color: var(--muted); font-size: clamp(18px, 3.4vw, 22px); margin-top: 10px; line-height: 1.35; }
+.hand { font-family: var(--hand); color: var(--accent); font-size: 26px; line-height: 1.1; margin-top: 14px; transform: rotate(-3deg); display: inline-block; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px; border-radius: 999px;
+  font-weight: 800; font-size: 16px; text-decoration: none;
+  transition: transform .15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-main { background: var(--accent); color: var(--accent-ink); }
+.btn-alt { background: var(--panel-2); color: var(--fg); border: 1px solid var(--line); }
+.btn svg { width: 20px; height: 20px; flex: none; }
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.stat { background: var(--panel); border-radius: 18px; padding: 18px 18px 16px; }
+.stat b { display: block; font-size: clamp(30px, 6vw, 40px); font-weight: 900; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { display: block; color: var(--muted); font-size: 14px; margin-top: 8px; line-height: 1.3; }
+
+/* work types & subjects */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 15px; }
+.chip.big { background: var(--panel-2); font-weight: 600; }
+.note { color: var(--muted); font-size: 14px; margin-top: 14px; }
+
+/* prices */
+.price { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.price td { padding: 14px 0; border-bottom: 1px dashed var(--line); font-size: 17px; }
+.price td:last-child { text-align: right; font-weight: 800; white-space: nowrap; padding-left: 16px; }
+.price tr.hl td:last-child { color: var(--accent); }
+.price small { display: block; color: var(--muted); font-size: 13px; font-weight: 400; margin-top: 2px; }
+
+/* steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
+.steps li::before {
+  counter-increment: s; content: counter(s);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink);
+  display: grid; place-items: center; font-weight: 900; font-size: 18px;
+}
+.steps h3 { font-size: 18px; font-weight: 800; margin-top: 2px; }
+.steps p { color: var(--muted); margin-top: 2px; }
+
+/* reviews */
+.reviews { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.bubble { background: var(--panel); border-radius: 20px 20px 20px 6px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.bubble q { quotes: none; font-size: 17px; }
+.who { color: var(--muted); font-size: 14px; }
+.who b { color: var(--fg); }
+.exchange {
+  margin-top: 14px; background: var(--panel-2); border-radius: 18px; padding: 18px 20px;
+  display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: baseline;
+}
+.exchange .t { width: 100%; color: var(--muted); font-size: 14px; }
+.exchange div b { font-size: 24px; font-weight: 900; color: var(--accent); font-variant-numeric: tabular-nums; }
+.exchange div span { color: var(--muted); font-size: 14px; margin-left: 6px; }
+
+/* faq */
+details { border-bottom: 1px solid var(--line); }
+summary { cursor: pointer; padding: 16px 0; font-weight: 700; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--accent); font-weight: 900; font-size: 22px; line-height: 1; }
+details[open] summary::after { content: "−"; }
+details p { color: var(--muted); padding-bottom: 16px; }
+
+/* final */
+.final { background: var(--accent); color: var(--accent-ink); border-radius: 28px; padding: 32px 24px; text-align: center; display: grid; gap: 14px; justify-items: center; }
+.final h2 { margin: 0; }
+.final p { font-weight: 500; max-width: 46ch; }
+.final .btn-main { background: var(--accent-ink); color: var(--accent); }
+.final .btn-alt { background: transparent; color: var(--accent-ink); border-color: var(--accent-ink); }
+.final .nick { font-weight: 800; font-size: 18px; user-select: all; }
+footer { color: var(--muted); font-size: 13px; text-align: center; padding-block: 28px 40px; }
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; gap: 20px; }
+  .photo { max-width: 220px; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .reviews { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+</style>
+
+<main class="wrap">
+  <header class="hero">
+    <img class="photo" src="ksenia.jpg" alt="Ксения">
+    <div>
+      <h1>Ксения</h1>
+      <p class="sub">Помогаю студентам с курсовыми, дипломами и отчётами<br>Нижний Новгород · онлайн</p>
+      <span class="hand">Ответственно, качественно, в срок ♡</span>
+      <div class="cta-row">
+        <a class="btn btn-main" href="https://t.me/ksenia921" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.7.2 1.4 1.5Z"/></svg>
+          Написать в Telegram
+        </a>
+        <a class="btn btn-alt" href="https://vk.com/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.5c-5.5 0-8.6-3.8-8.8-10h2.8c.1 4.6 2.1 6.5 3.7 6.9V7.5h2.6v3.9c1.6-.2 3.3-2 3.8-3.9h2.6c-.4 2.4-2.2 4.2-3.4 4.9 1.2.6 3.2 2.1 4 5.1h-2.9c-.6-1.9-2.2-3.4-4.1-3.6v3.6h-.3Z"/></svg>
+          ВКонтакте
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section aria-label="Цифры">
+    <div class="stats">
+      <div class="stat"><b>150+</b><span>выполненных работ</span></div>
+      <div class="stat"><b>0</b><span>возвратов денег</span></div>
+      <div class="stat"><b>86%</b><span>средняя оригинальность</span></div>
+      <div class="stat"><b>3 года</b><span>опыта, без посредников</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>С чем <span class="y">помогу</span></h2>
+    <div class="chips">
+      <span class="chip big">Курсовые</span>
+      <span class="chip big">Дипломы</span>
+      <span class="chip big">Отчёты по практике</span>
+      <span class="chip big">Статьи</span>
+      <span class="chip big">Презентации</span>
+      <span class="chip big">Речь к защите</span>
+      <span class="chip big">Доклады</span>
+      <span class="chip big">Контрольные и задачи</span>
+      <span class="chip big">Эссе и рефераты</span>
+    </div>
+
+    <h2 style="margin-top:32px">Направления</h2>
+    <div class="chips">
+      <span class="chip">Экономика</span><span class="chip">Бухучёт</span><span class="chip">Финансы</span>
+      <span class="chip">Менеджмент</span><span class="chip">Маркетинг</span><span class="chip">Реклама и PR</span>
+      <span class="chip">Управление персоналом</span><span class="chip">ГМУ</span><span class="chip">Логистика</span>
+      <span class="chip">Туризм</span><span class="chip">Лингвистика</span><span class="chip">Психология</span>
+      <span class="chip">Педагогика</span><span class="chip">Право</span><span class="chip">История</span>
+      <span class="chip">Литература</span><span class="chip">Философия</span><span class="chip">Культурология</span>
+      <span class="chip">Экология</span><span class="chip">Информатика (частично)</span>
+    </div>
+    <p class="note">Сложные технические работы не беру — лучше честно скажу сразу.</p>
+  </section>
+
+  <section>
+    <h2>Цены</h2>
+    <table class="price">
+      <tr class="hl"><td>Курсовая</td><td>от 11 000 ₽</td></tr>
+      <tr class="hl"><td>Диплом</td><td>от 13 000 ₽</td></tr>
+      <tr><td>Отчёт по практике</td><td>от 1 000 ₽</td></tr>
+      <tr><td>Статья<small>3–7 страниц</small></td><td>1 300 ₽</td></tr>
+      <tr><td>Речь к защите</td><td>1 200 ₽</td></tr>
+      <tr><td>Мелкие работы<small>эссе, реферат, доклад, контрольная</small></td><td>от 500 ₽</td></tr>
+      <tr><td>Проверка на антиплагиат<small>часто дарю к работе</small></td><td>490 ₽</td></tr>
+    </table>
+    <p class="note">Точная цена зависит от темы, объёма и срока. Напишите — посчитаю.</p>
+  </section>
+
+  <section>
+    <h2>Как я <span class="y">работаю</span></h2>
+    <ol class="steps">
+      <li><div><h3>Вы пишете тему, предмет и срок</h3><p>Если есть методичка или требования вуза — пришлите сразу.</p></div></li>
+      <li><div><h3>Договариваемся и вносите 50%</h3><p>Остаток — только после сдачи работы.</p></div></li>
+      <li><div><h3>Сдаю по главам</h3><p>Глава → вы показываете научруку → правки → следующая глава. Преподаватель видит прогресс.</p></div></li>
+      <li><div><h3>Правки бесплатно</h3><p>Если преподаватель вернёт с замечаниями — исправлю, это входит в стоимость.</p></div></li>
+    </ol>
+    <p class="note">Обычный срок — 5–7 дней, диплом — около 14 дней. Если горит, пишите: часто можно быстрее.</p>
+  </section>
+
+  <section>
+    <h2>Что <span class="y">пишут</span> после защиты</h2>
+    <div class="reviews">
+      <figure class="bubble" style="margin:0">
+        <q>Ксюша, привет ❤️ я защитилась на 5!!! Спасибо тебе огромное, дорогая. Я была последняя, меня особо уже не спрашивали… Благодаря твоей крутой работе ❤️</q>
+        <figcaption class="who"><b>Наира</b> · диплом</figcaption>
+      </figure>
+      <figure class="bubble" style="margin:0">
+        <q>Преподаватель ответил, оценка отлично. Спасибо тебе ещё раз огромное за такое отличное выполнение всех работ!!! 🙏❤️</q>
+        <figcaption class="who"><b>Кристина</b> · курсовая</figcaption>
+      </figure>
+    </div>
+    <div class="exchange">
+      <span class="t">И ещё 125 работ на бирже для студентов:</span>
+      <div><b>4,67</b><span>средняя оценка</span></div>
+      <div><b>0</b><span>возвратов</span></div>
+      <div><b>86%</b><span>оригинальность</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Частые вопросы</h2>
+    <details><summary>Вы из Нижнего? А если я из другого города?</summary><p>Я из Нижнего Новгорода, но работаю онлайн — город и вуз не важны. Всё общение в Telegram или ВК.</p></details>
+    <details><summary>Как проходит оплата?</summary><p>50% предоплата, остаток — после сдачи. Перевод на карту.</p></details>
+    <details><summary>А если научрук вернёт работу?</summary><p>Исправлю бесплатно — правки входят в стоимость, пока работа не сдана.</p></details>
+    <details><summary>Можно только одну главу или только оформление?</summary><p>Да. Можно помочь с частью работы: главой, введением, оформлением по ГОСТ или списком литературы.</p></details>
+    <details><summary>Работаете одна или с командой?</summary><p>Одна, без посредников и помощников — так я сама отвечаю за качество каждой работы.</p></details>
+  </section>
+
+  <section>
+    <div class="final">
+      <h2>Сессия близко — напишите сейчас</h2>
+      <p>Пришлите тему, предмет и срок. Отвечу и скажу цену.</p>
+      <div class="cta-row" style="justify-content:center;margin-top:4px">
+        <a class="btn btn-main" href="https://t.me/ksenia921" target="_blank" rel="noopener">Telegram</a>
+        <a class="btn btn-alt" href="https://vk.com/" target="_blank" rel="noopener">ВКонтакте</a>
+      </div>
+      <span class="nick">@ksenia921</span>
+    </div>
+  </section>
+</main>
+<footer class="wrap">Ксения · помощь студентам · Нижний Новгород и онлайн</footer>
