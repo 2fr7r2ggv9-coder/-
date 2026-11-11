@@ -17,8 +17,11 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#2a1c45;font-fam
 .bub::after{content:"";position:absolute;bottom:-34px;width:0;height:0;border:36px solid transparent;border-top-color:#fff;border-bottom:0}
 .bub.l::after{left:30%}.bub.r::after{right:30%}
 .endc{position:absolute;left:60px;right:60px;bottom:200px;background:rgba(20,12,35,.88);border:6px solid #ff5fa2;border-radius:40px;padding:40px;text-align:center}
-.endc h3{font-size:66px;font-weight:900;line-height:1.12}
-.endc p{font-size:42px;font-weight:700;color:#e6dcf5;margin-top:20px;line-height:1.3}
+.endc h3{font-size:58px;font-weight:900;line-height:1.1}
+.endc p{font-size:38px;font-weight:700;color:#e6dcf5;margin-top:12px;line-height:1.3}
+.who{display:flex;align-items:center;gap:30px;text-align:left}
+.who img{width:200px;height:200px;border-radius:50%;object-fit:cover;border:6px solid #ff5fa2;flex:none}
+.cta{margin-top:30px;background:#ff5fa2;color:#1a1326;font-weight:900;font-size:48px;border-radius:24px;padding:20px}
 .brand{position:absolute;left:0;right:0;bottom:90px;text-align:center;font-size:34px;font-weight:700;color:rgba(255,255,255,.85);text-shadow:0 2px 8px rgba(0,0,0,.5)}
 </style></head><body>
 <div id="cam"><img src="assets/gta6-art.jpg"><div class="plate" id="pl"><small>СЕССИЯ</small><span>ДИПЛОМ</span><i>ДЕДЛАЙН СКОРО</i></div></div>
@@ -28,25 +31,24 @@ const cam=document.getElementById('cam'),ov=document.getElementById('ov'),pl=doc
 const clamp=x=>Math.max(0,Math.min(1,x)),ease=p=>1-Math.pow(1-p,3),io=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2,pop=(t,a,d=.35)=>clamp((t-a)/d);
 const back=p=>{const c=1.7;return 1+(c+1)*Math.pow(p-1,3)+c*Math.pow(p-1,2)};
 const F=[483,1100,1.118];
-const K=[[0,483,1180,1.2],[3.2,483,1080,1.118],[3.9,450,880,2.3],[6.6,455,860,2.4],[7.3,590,900,2.3],[10,595,880,2.4],[10.7,470,1665,2.6],[12.8,470,1670,2.7],[13.6,...F],[18,483,1050,1.16]];
+const K=[[0,483,1180,1.2],[3.2,483,1080,1.118],[3.9,450,880,2.3],[6.6,455,860,2.4],[7.3,590,900,2.3],[10,595,880,2.4],[10.7,440,870,2.5],[13.4,445,860,2.6],[14.1,595,890,2.6],[16.4,600,880,2.75],[17.2,...F],[22,483,1050,1.16]];
 function camAt(t){if(t<=K[0][0])return K[0].slice(1);for(let i=0;i<K.length-1;i++){const a=K[i],b=K[i+1];if(t<=b[0]){const p=io((t-a[0])/(b[0]-a[0]));return [a[1]+(b[1]-a[1])*p,a[2]+(b[2]-a[2])*p,a[3]+(b[3]-a[3])*p];}}return K[K.length-1].slice(1);}
+function bub(t,a0,a1,side,who,txt){const a=ease(pop(t,a0,.3))*(1-ease(pop(t,a1-.3,.3)));return `<div class="bub ${side}" style="opacity:${a};transform:scale(${.85+.15*back(pop(t,a0,.35))})"><b>${who}</b>${txt}</div>`}
 function render(t){
  const [x,y,s]=camAt(t);cam.style.transform=`translate(${540-x*s}px,${960-y*s}px) scale(${s})`;
- pl.style.opacity=t>=10.4?1:0;
+ pl.style.opacity=0;
  let h='';
  if(t<3.4){const a=t<3?1:1-ease(pop(t,3,.4));
   h+=`<div class="top" style="opacity:${a*ease(pop(t,0,.3))}">19 ноября<br>выходит GTA 6 🎮</div><div class="sub" style="opacity:${a*ease(pop(t,.9,.35))}">Студенты за неделю до релиза:</div>`;}
- else if(t<6.8){const a=ease(pop(t,4,.3))*(1-ease(pop(t,6.5,.3)));
-  h+=`<div class="bub l" style="opacity:${a};transform:scale(${.85+.15*back(pop(t,4,.35))})"><b>Она</b>Ну что, 19-го<br>всю ночь играем? 😏</div>`;}
- else if(t<10.3){const a=ease(pop(t,7.4,.3))*(1-ease(pop(t,10,.3)));
-  h+=`<div class="bub r" style="opacity:${a};transform:scale(${.85+.15*back(pop(t,7.4,.35))})"><b>Он</b>Не могу…<br>у меня диплом 😐</div>`;}
- else if(t<13.4){const a=ease(pop(t,10.8,.3))*(1-ease(pop(t,13.1,.3)));
-  h+=`<div class="top" style="top:260px;opacity:${a}">Даже номер<br>напоминает 🙃</div>`;}
- else{const e=t-13.4;
-  h+=`<div class="top" style="opacity:${ease(pop(e,.3,.4))}">Хочешь играть,<br>а не думать о дипломе?</div>`;
-  h+=`<div class="endc" style="opacity:${ease(pop(e,1,.4))};transform:translateY(${(1-ease(pop(e,1,.4)))*80}px)"><h3>Ты играй 🎮<br>с дипломом помогу я</h3><p>Пиши мне в директ 👇</p></div>`;}
+ else if(t<6.8) h+=bub(t,4,6.8,'l','Она','Ну что, 19-го<br>всю ночь играем? 😏');
+ else if(t<10.3) h+=bub(t,7.4,10.3,'r','Он','Не могу…<br>у меня диплом 😐');
+ else if(t<13.8) h+=bub(t,10.8,13.8,'l','Она','Так отдай его Ксении 😉<br>Она по главам сдаёт');
+ else if(t<16.9) h+=bub(t,14.2,16.9,'r','Он','…а так можно было? 😳');
+ else{const e=t-16.9;
+  h+=`<div class="top" style="opacity:${ease(pop(e,.3,.4))}">Итог: он в GTA 6 🎮<br>а диплом у Ксении 📚</div>`;
+  h+=`<div class="endc" style="opacity:${ease(pop(e,1,.4))};transform:translateY(${(1-ease(pop(e,1,.4)))*80}px)"><div class="who"><img src="../ksenia.jpg"><div><h3>Это я, Ксения 👋</h3><p>Помогаю с курсовыми<br>и дипломами, сдаю по главам</p></div></div><div class="cta">Пиши в директ: «GTA» 👇</div></div>`;}
  h+=`<div class="brand">Ксения · помощь студентам</div>`;
  ov.innerHTML=h;}
-window.CLIPS={G:{fn:render,len:18}};
+window.CLIPS={G:{fn:render,len:22}};
 render(0);
 </script></body></html>
