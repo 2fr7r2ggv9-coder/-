@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#14121c;font-family:Inter,"Noto Color Emoji",sans-serif;color:#fff}
+#S{position:absolute;inset:0;overflow:hidden}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%,var(--glow) 0,rgba(20,18,28,0) 62%)}
+.hook{position:absolute;left:60px;right:60px;top:150px;text-align:center;font-weight:900;font-size:84px;line-height:1.05;letter-spacing:-.02em}
+.hook small{display:block;font-size:38px;font-weight:600;color:#b9b4cc;margin-top:22px;letter-spacing:0;line-height:1.3}
+.big{position:absolute;left:60px;right:60px;top:640px;text-align:center;font-weight:900;font-size:108px;line-height:1.04;letter-spacing:-.02em}
+.big .e{display:block;font-size:220px;margin-bottom:40px}
+.scale{position:absolute;left:90px;right:90px;top:1300px;display:grid;gap:18px}
+.scale div{display:flex;align-items:center;gap:22px;font-size:40px;font-weight:700}
+.scale i{display:block;width:34px;height:34px;border-radius:10px}
+.num{position:absolute;left:0;right:0;top:150px;text-align:center;font-size:40px;font-weight:700;color:#b9b4cc;letter-spacing:.12em}
+.card{position:absolute;left:130px;width:820px;top:300px;height:1180px;border-radius:56px;background:#221f2e;border:8px solid var(--c);
+ box-shadow:0 0 80px var(--glow),0 40px 80px rgba(0,0,0,.5);overflow:hidden;transform-origin:50% 50%}
+.card .tag{position:absolute;left:0;right:0;top:0;height:120px;background:var(--c);color:#14121c;display:grid;place-items:center;font-size:52px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.card .pic{position:absolute;left:50px;right:50px;top:170px;height:440px;border-radius:36px;background:rgba(255,255,255,.06);display:grid;place-items:center;font-size:250px}
+.card .name{position:absolute;left:50px;right:50px;top:650px;text-align:center;font-size:62px;font-weight:900;line-height:1.12}
+.card .stars{position:absolute;left:0;right:0;top:880px;text-align:center;font-size:72px;letter-spacing:10px}
+.card .stars b{color:var(--c)}.card .stars span{color:#3d394d}
+.card .meta{position:absolute;left:50px;right:50px;top:1000px;text-align:center;font-size:40px;color:#cfcbe0;line-height:1.3;font-weight:600}
+.shine{position:absolute;top:-200px;bottom:-200px;width:220px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.35),rgba(255,255,255,0));transform:rotate(18deg)}
+.stamp{position:absolute;left:150px;right:150px;top:1540px;text-align:center;font-size:46px;font-weight:800;line-height:1.25;color:#fff}
+.end{position:absolute;left:70px;right:70px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:50px}
+.end h2{font-size:92px;font-weight:900;line-height:1.08;letter-spacing:-.02em}
+.end p{font-size:44px;color:#cfcbe0;font-weight:600;line-height:1.35}
+.end img{width:300px;height:300px;border-radius:50%;object-fit:cover;border:8px solid #ffd257}
+.brand{position:absolute;left:0;right:0;bottom:110px;text-align:center;font-size:34px;color:#8e89a3;font-weight:600}
+.spark{position:absolute;font-size:60px}
+</style></head><body><div id="S"></div>
+<script>
+const S=document.getElementById('S');
+const clamp=x=>Math.max(0,Math.min(1,x)),ease=p=>1-Math.pow(1-p,3),pop=(t,a,d=.35)=>clamp((t-a)/d);
+const back=p=>{const c=1.7;return 1+(c+1)*Math.pow(p-1,3)+c*Math.pow(p-1,2)};
+const R=[
+ {e:'🌙',n:'Пишет курсовую<br>в ночь перед сдачей',r:'Обычный',s:1,c:'#a7a3b5',g:'rgba(167,163,181,.25)',m:'Встречается в каждой<br>группе. Особенно в декабре',st:'Популяция: почти все 😅'},
+ {e:'📘',n:'Дочитал методичку<br>до конца',r:'Редкий',s:2,c:'#5aa9ff',g:'rgba(90,169,255,.35)',m:'Отличительный признак:<br>знает, какой нужен шрифт',st:'1 на поток'},
+ {e:'📲',n:'Ответил старосте<br>с первого раза',r:'Эпический',s:3,c:'#b77cff',g:'rgba(183,124,255,.4)',m:'Старосты рассказывают<br>о нём легенды',st:'Видели 2 раза за семестр'},
+ {e:'⏰',n:'Сдал курсовую<br>раньше срока',r:'Легендарный',s:4,c:'#ffb648',g:'rgba(255,182,72,.45)',m:'Существование подтверждено,<br>но фото нет',st:'Кафедра до сих пор в шоке'},
+ {e:'🦄',n:'Научрук сказал:<br>«Правок нет»',r:'Мифический',s:5,c:'#ff5fa2',g:'rgba(255,95,162,.5)',m:'Наблюдений<br>не зафиксировано',st:'Если встречали —<br>напишите нам 👀'}
+];
+const H=3.2, CL=3.6, CS=H, END=CS+R.length*CL, LEN=END+3.4;
+function render(t){
+ let h='';
+ if(t<H){
+  const a=t<2.8?1:1-ease(pop(t,2.8,.4));
+  h+=`<div class="bg" style="--glow:rgba(255,210,87,.18);opacity:${a}"></div>`;
+  h+=`<div class="hook" style="opacity:${a*ease(pop(t,0,.35))};transform:translateY(${(1-ease(pop(t,0,.35)))*40}px)">Редкость студентов<small>от «встречается на каждом шагу»<br>до «никто не видел»</small></div>`;
+  h+=`<div class="big" style="opacity:${a*ease(pop(t,.5,.35))};transform:scale(${.7+.3*back(pop(t,.5,.45))})"><span class="e">🔍</span>Собираем<br>коллекцию</div>`;
+  h+=`<div class="scale">`;R.forEach((r,k)=>{const p=pop(t,1.1+k*.2,.3);h+=`<div style="opacity:${a*ease(p)};transform:translateX(${(1-ease(p))*-80}px)"><i style="background:${r.c}"></i>${r.r}</div>`});h+=`</div>`;
+ } else if(t<END){
+  const k=Math.floor((t-CS)/CL), r=R[k], lt=t-CS-k*CL;
+  const out=lt>CL-.3?ease(pop(lt,CL-.3,.3)):0;
+  const flip=Math.min(1,lt/.45); const ry=(1-ease(flip))*90;
+  const shake=k===4&&lt>1.6&&lt<2.1?Math.sin(lt*70)*10:0;
+  h+=`<div class="bg" style="--glow:${r.g}"></div>`;
+  h+=`<div class="num">КАРТОЧКА ${k+1} / ${R.length}</div>`;
+  h+=`<div class="card" style="--c:${r.c};--glow:${r.g};opacity:${1-out};transform:perspective(1600px) rotateY(${ry}deg) translateX(${shake-out*200}px) scale(${1-out*.1})">`;
+  h+=`<div class="tag">${r.r}</div><div class="pic" style="transform:scale(${.6+.4*back(pop(lt,.3,.4))})">${r.e}</div>`;
+  h+=`<div class="name" style="opacity:${ease(pop(lt,.4,.3))}">${r.n}</div><div class="stars">`;
+  for(let i=0;i<5;i++){const p=pop(lt,.8+i*.14,.18);h+=i<r.s?`<b style="display:inline-block;transform:scale(${p>0?back(p):0})">★</b>`:`<span>★</span>`}
+  h+=`</div><div class="meta" style="opacity:${ease(pop(lt,1.5,.3))}">${r.m}</div>`;
+  if(k>=2){const sp=((lt-.5)/1.1);h+=`<div class="shine" style="left:${-300+sp*1400}px"></div>`}
+  h+=`</div>`;
+  h+=`<div class="stamp" style="opacity:${(1-out)*ease(pop(lt,1.9,.3))};transform:scale(${.8+.2*back(pop(lt,1.9,.35))})">${r.st}</div>`;
+  if(k===4){for(let i=0;i<10;i++){const p=pop(lt,.5+i*.08,1.2);if(p<=0||p>=1)continue;const ang=i*0.63,d=ease(p)*520;
+   h+=`<div class="spark" style="left:${500+Math.cos(ang)*d}px;top:${860+Math.sin(ang)*d}px;opacity:${1-p}">✨</div>`}}
+  h+=`<div class="brand">Ксения · помощь студентам</div>`;
+ } else {
+  const lt=t-END;
+  h+=`<div class="bg" style="--glow:rgba(255,210,87,.2)"></div>`;
+  h+=`<div class="end" style="opacity:${ease(pop(lt,0,.4))}"><h2>А вы какой<br>редкости? 👇</h2>`;
+  h+=`<img src="../ksenia.jpg" style="transform:scale(${.85+.15*back(pop(lt,.4,.4))})">`;
+  h+=`<p>Пишите номер карточки<br>в комментарии.<br>Мифического пока никто не поймал 🦄</p></div>`;
+ }
+ S.innerHTML=h;
+}
+window.CLIPS={R:{fn:render,len:LEN}};
+render(0);
+</script></body></html>
