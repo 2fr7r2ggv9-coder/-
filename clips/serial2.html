@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,"Noto Color Emoji",-apple-system,sans-serif;color:#fff}
+#bg{position:absolute;inset:0}
+.status{position:absolute;top:0;left:0;right:0;height:120px;display:flex;align-items:center;justify-content:space-between;padding:20px 70px 0 120px;font-weight:700;font-size:46px;z-index:5}
+.status .r{display:flex;align-items:center;gap:18px}
+.bat{display:flex;align-items:center;gap:4px}
+.bat b{background:#fff;color:#000;border-radius:14px;font-size:30px;padding:2px 10px;font-weight:800}
+.bat i{width:6px;height:16px;background:#888;border-radius:0 3px 3px 0}
+.head{position:absolute;top:140px;left:36px;right:36px;height:120px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+.cap{background:rgba(40,40,46,.82);backdrop-filter:blur(20px);border-radius:999px;height:112px;display:flex;align-items:center;justify-content:center}
+.back{width:190px;gap:16px;font-size:64px;font-weight:300}
+.back span{background:#fff;color:#000;border-radius:50%;width:52px;height:52px;display:grid;place-items:center;font-size:32px;font-weight:700}
+.title{flex:1;margin:0 24px;flex-direction:column;line-height:1.15}
+.title b{font-size:42px;font-weight:700}
+.title small{font-size:32px;color:#9a9aa4}
+.title small.tp{color:#a98bff}
+.ava{width:112px;height:112px;border-radius:50%;background:linear-gradient(160deg,#ffb36b,#ff6f91);display:grid;place-items:center;font-size:50px;font-weight:700;border:4px solid rgba(255,255,255,.15)}
+.chat{position:absolute;left:0;right:0;top:290px;bottom:220px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:0 30px 20px}
+.date{align-self:center;background:rgba(40,40,46,.8);border-radius:999px;padding:8px 26px;font-size:32px;font-weight:600;margin:16px 0}
+.m{max-width:80%;font-size:48px;line-height:1.28;padding:20px 30px 18px;border-radius:44px;position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;gap:0 18px}
+.m .tm{font-size:28px;color:rgba(255,255,255,.55);margin-left:auto;transform:translateY(6px);white-space:nowrap}
+.in{align-self:flex-start;background:#26252c}
+.out{align-self:flex-end;background:linear-gradient(135deg,#9b63ff,#7b54f2 60%,#6a5cf5)}
+.out .tm{color:rgba(255,255,255,.75)}
+.in.tail{border-bottom-left-radius:12px}
+.out.tail{border-bottom-right-radius:12px}
+.fw{display:block;width:100%;border-left:5px solid #a98bff;padding-left:18px;margin-bottom:10px;font-size:34px;line-height:1.25;color:#a98bff}
+.fw b{font-weight:700}
+.big{font-size:150px;background:none!important;padding:0 10px}
+.input{position:absolute;left:30px;right:30px;bottom:70px;height:120px;display:flex;align-items:center;gap:20px;z-index:5}
+.circ{width:120px;height:120px;border-radius:50%;background:rgba(40,40,46,.85);display:grid;place-items:center;flex:none}
+.field{flex:1;height:120px;border-radius:999px;background:rgba(40,40,46,.85);display:flex;align-items:center;padding:0 40px;font-size:44px;color:#8b8b94}
+.hook{position:absolute;left:70px;right:70px;top:560px;z-index:8;display:grid;justify-items:center;gap:22px;text-align:center}
+.hook .ep{background:#ffd54a;color:#000;font-weight:900;font-size:40px;padding:10px 30px;border-radius:16px}
+.hook .h{background:#fff;color:#000;font-weight:900;font-size:76px;line-height:1.1;padding:26px 40px;border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.label{position:absolute;top:278px;left:0;right:0;text-align:center;z-index:6}
+.label span{background:rgba(255,213,74,.95);color:#000;font-size:28px;font-weight:800;padding:6px 20px;border-radius:999px}
+.end{position:absolute;inset:0;background:#000;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;text-align:center;padding:80px}
+.end .t{font-size:108px;font-weight:900;line-height:1.02;letter-spacing:-.02em}
+.end .s{font-size:44px;color:#b9b9c4;line-height:1.35}
+.end .ep{background:#ffd54a;color:#000;font-weight:900;font-size:40px;padding:10px 30px;border-radius:16px}
+.end .sub{border:3px solid #fff;border-radius:999px;padding:24px 50px;font-size:44px;font-weight:800}
+</style></head>
+<body><canvas id="bg" width="1080" height="1920"></canvas><div id="s"></div>
+<script>
+/* wallpaper: dark with soft violet doodles, deterministic */
+(function(){const c=document.getElementById('bg').getContext('2d');
+ const g=c.createLinearGradient(0,0,0,1920);g.addColorStop(0,'#0c0a14');g.addColorStop(1,'#07070b');c.fillStyle=g;c.fillRect(0,0,1080,1920);
+ let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+ c.strokeStyle='rgba(150,120,255,0.16)';c.lineWidth=4;c.lineCap='round';c.lineJoin='round';
+ for(let y=40;y<1920;y+=150){for(let x=40;x<1080;x+=150){const px=x+rnd()*60,py=y+rnd()*60,k=Math.floor(rnd()*6),s=22+rnd()*14;c.save();c.translate(px,py);c.rotate(rnd()*6.28);c.beginPath();
+  if(k===0){c.arc(0,0,s,0,6.28);}
+  else if(k===1){for(let i=0;i<5;i++){const a=i*1.2566-1.57;c.lineTo(Math.cos(a)*s,Math.sin(a)*s);c.lineTo(Math.cos(a+.628)*s*.45,Math.sin(a+.628)*s*.45);}c.closePath();}
+  else if(k===2){c.moveTo(0,s*.6);c.bezierCurveTo(-s*1.2,-s*.2,-s*.5,-s,0,-s*.35);c.bezierCurveTo(s*.5,-s,s*1.2,-s*.2,0,s*.6);}
+  else if(k===3){c.rect(-s*.7,-s*.9,s*1.4,s*1.8);c.moveTo(-s*.4,-s*.4);c.lineTo(s*.4,-s*.4);c.moveTo(-s*.4,0);c.lineTo(s*.4,0);}
+  else if(k===4){c.moveTo(-s,0);c.quadraticCurveTo(-s*.5,-s,0,0);c.quadraticCurveTo(s*.5,s,s,0);}
+  else {c.arc(0,0,s*.8,0,3.14);c.moveTo(-s*.8,0);c.lineTo(s*.8,0);}
+  c.stroke();c.restore();}}})();
+
+const S=document.getElementById('s');
+const clamp=x=>Math.max(0,Math.min(1,x)), ease=p=>1-Math.pow(1-p,3), pop=(t,a,d=.3)=>clamp((t-a)/d);
+const back=p=>{const c=1.5;return 1+(c+1)*Math.pow(p-1,3)+c*Math.pow(p-1,2)};
+
+const ICON={
+ wifi:'<svg width="56" height="40" viewBox="0 0 28 20"><path d="M14 18l3-3.5a4.5 4.5 0 0 0-6 0zM6.5 10.5a11 11 0 0 1 15 0l-2.2 2.4a7.8 7.8 0 0 0-10.6 0zM2 6a17.5 17.5 0 0 1 24 0l-2.2 2.4a14.3 14.3 0 0 0-19.6 0z" fill="#fff"/></svg>',
+ sig:'<svg width="56" height="36" viewBox="0 0 28 18"><rect x="0" y="12" width="5" height="6" rx="1.5" fill="#fff"/><rect x="7.5" y="8" width="5" height="10" rx="1.5" fill="#fff"/><rect x="15" y="4" width="5" height="14" rx="1.5" fill="#fff"/><rect x="22.5" y="0" width="5" height="18" rx="1.5" fill="#666"/></svg>',
+ clip:'<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#c9c9d2" stroke-width="2" stroke-linecap="round"><path d="M20 11.5l-7.8 7.8a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8"/></svg>',
+ mic:'<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#c9c9d2" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+ chk:'<svg width="40" height="22" viewBox="0 0 20 11" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l3 3 6-7M8 8l1 1 6-7"/></svg>'
+};
+
+/* ---------- Серия 1 ---------- */
+const MSG=[
+ {t:1.2, w:'in', x:'Ксения, вы тут? 😭', tm:'9:12'},
+ {t:2.4, w:'out',x:'Тут ☺️ Что ответил научрук?', tm:'9:12'},
+ {t:3.6, w:'in', x:'Сейчас перешлю', tm:'9:13'},
+ {t:5.0, w:'in', fwd:'Научный руководитель', x:'Елизавета, курсовые сдаются 20 декабря. Скидок нет.', tm:'9:13'},
+ {t:7.0, w:'in', x:'СКИДОК НЕТ 😭', tm:'9:13'},
+ {t:8.2, w:'in', x:'Он подумал, что это я у него скидку прошу', tm:'9:13'},
+ {t:9.6, w:'out',x:'😅', tm:'9:14', big:true},
+ {t:11.0,w:'in', fwd:'Научный руководитель', x:'И методичку прочитайте. Она с сентября в чате.', tm:'9:14'},
+ {t:13.0,w:'in', x:'Методичка. С сентября. В чате 🙈', tm:'9:14'},
+ {t:14.2,w:'in', x:'Кто-нибудь знал??', tm:'9:14'},
+ {t:15.6,w:'out',x:'Пришлите её мне, разберёмся ☺️', tm:'9:15'},
+ {t:17.2,w:'in', x:'Ой, подождите', tm:'9:15'},
+ {t:18.6,w:'in', x:'мне пишет мама Димы 😳', tm:'9:15'},
+ {t:19.8,w:'out',x:'😳', tm:'9:15', big:true},
+];
+const END=21.4, LEN=26;
+function render(t){
+  const typing=MSG.find(m=>m.w==='in'&&t>=m.t-0.9&&t<m.t);
+  const st=Math.min(9*60+12+Math.floor(t/6),9*60+15);
+  let h=`<div class="status"><span>${Math.floor(st/60)}:${String(st%60).padStart(2,'0')}</span><span class="r">${ICON.sig}${ICON.wifi}<span class="bat"><b>31</b><i></i></span></span></div>
+  <div class="head"><div class="cap back">‹<span>2</span></div><div class="cap title"><b>Лиза Староста 📚</b><small class="${typing?'tp':''}">${typing?'печатает…':'в сети'}</small></div><div class="ava">Л</div></div>
+  <div class="label"><span>Сериал «Сессия» · серия 2</span></div>
+  <div class="chat"><div class="date">Сегодня</div>`;
+  const shown=MSG.filter(m=>t>=m.t);
+  shown.forEach((m,i)=>{const p=pop(t,m.t,.32); const nx=shown[i+1]; const tail=!nx||nx.w!==m.w;
+    if(m.big){h+=`<div class="m out big" style="opacity:${ease(p)};transform:scale(${0.3+0.7*back(p)});transform-origin:bottom right">${m.x}</div>`;return;}
+    h+=`<div class="m ${m.w}${tail?' tail':''}" style="opacity:${ease(p)};transform:translateY(${(1-ease(p))*50}px) scale(${0.92+0.08*ease(p)})">${m.fwd?`<span class="fw">Переслано от<br><b>${m.fwd}</b></span>`:''}<span>${m.x}</span><span class="tm">${m.tm}${m.w==='out'?' '+ICON.chk:''}</span></div>`;});
+  h+=`</div><div class="input"><div class="circ">${ICON.clip}</div><div class="field">Сообщение</div><div class="circ">${ICON.mic}</div></div>`;
+  if(t<3.2){const a=t<2.7?1:1-ease(pop(t,2.7,.5));const sc=0.94+0.06*back(pop(t+0.5,0,.45));
+    h+=`<div class="hook" style="opacity:${a};transform:scale(${sc})"><span class="ep">СЕРИЯ 2</span><div class="h">Научрук ответил<br>старосте 😬</div></div>`;}
+  if(t>=END){const p=ease(pop(t,END,.35));
+    h+=`<div class="end" style="opacity:${p}"><span class="ep">Сериал «Сессия» · серия 2 из 3</span><div class="t">Продолжение<br>следует…</div><div class="s">Что хочет мама Димы? 👀<br>Узнаете в 3 серии — финал</div><div class="sub" style="opacity:${ease(pop(t,END+1,.4))}">Подпишись, чтобы не пропустить</div></div>`;}
+  S.innerHTML=h;
+}
+window.CLIPS={S2:{fn:render,len:LEN}};
+</script></body></html>
